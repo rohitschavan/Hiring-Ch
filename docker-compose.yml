@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - AI_PROVIDER=${AI_PROVIDER:-openai}
+      - AI_MODEL=${AI_MODEL:-gpt-4o-mini}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - HUGGINGFACE_API_KEY=${HUGGINGFACE_API_KEY}
+      - COINGECKO_API_URL=${COINGECKO_API_URL:-https://api.coingecko.com/api/v3}
+      - HYPERLIQUID_API_URL=${HYPERLIQUID_API_URL:-https://api.hyperliquid.xyz}
+    env_file:
+      - .env
+    restart: unless-stopped
+

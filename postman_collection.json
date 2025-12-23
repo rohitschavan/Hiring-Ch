@@ -1,0 +1,290 @@
+{
+  "info": {
+    "name": "Token Insight & Analytics API",
+    "description": "Complete API collection for Token Insight and HyperLiquid Wallet PnL endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        },
+        "description": "Check if the API server is running and healthy"
+      },
+      "response": []
+    },
+    {
+      "name": "Token Insight API",
+      "item": [
+        {
+          "name": "Get Bitcoin Insight",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vs_currency\": \"usd\",\n  \"history_days\": 30\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/token/bitcoin/insight",
+              "host": ["{{base_url}}"],
+              "path": ["api", "token", "bitcoin", "insight"]
+            },
+            "description": "Get AI-powered insights for Bitcoin with 30 days of historical data"
+          }
+        },
+        {
+          "name": "Get Ethereum Insight",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vs_currency\": \"usd\",\n  \"history_days\": 7\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/token/ethereum/insight",
+              "host": ["{{base_url}}"],
+              "path": ["api", "token", "ethereum", "insight"]
+            },
+            "description": "Get AI-powered insights for Ethereum with 7 days of historical data"
+          }
+        },
+        {
+          "name": "Get Chainlink Insight",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vs_currency\": \"usd\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/token/chainlink/insight",
+              "host": ["{{base_url}}"],
+              "path": ["api", "token", "chainlink", "insight"]
+            },
+            "description": "Get AI-powered insights for Chainlink (no historical data)"
+          }
+        },
+        {
+          "name": "Get Solana Insight",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vs_currency\": \"usd\",\n  \"history_days\": 14\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/token/solana/insight",
+              "host": ["{{base_url}}"],
+              "path": ["api", "token", "solana", "insight"]
+            },
+            "description": "Get AI-powered insights for Solana with 14 days of historical data"
+          }
+        },
+        {
+          "name": "Get Token Insight - Invalid Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vs_currency\": \"usd\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/token/invalid-token-xyz123/insight",
+              "host": ["{{base_url}}"],
+              "path": ["api", "token", "invalid-token-xyz123", "insight"]
+            },
+            "description": "Test error handling with invalid token ID"
+          }
+        }
+      ],
+      "description": "Token Insight API endpoints - Fetches token data from CoinGecko and generates AI-powered insights"
+    },
+    {
+      "name": "HyperLiquid PnL API",
+      "item": [
+        {
+          "name": "Get Wallet PnL - 3 Days",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/hyperliquid/0x1234567890123456789012345678901234567890/pnl?start=2025-01-01&end=2025-01-03",
+              "host": ["{{base_url}}"],
+              "path": ["api", "hyperliquid", "0x1234567890123456789012345678901234567890", "pnl"],
+              "query": [
+                {
+                  "key": "start",
+                  "value": "2025-01-01",
+                  "description": "Start date in YYYY-MM-DD format"
+                },
+                {
+                  "key": "end",
+                  "value": "2025-01-03",
+                  "description": "End date in YYYY-MM-DD format"
+                }
+              ]
+            },
+            "description": "Get daily PnL for a wallet over 3 days"
+          }
+        },
+        {
+          "name": "Get Wallet PnL - 7 Days",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/hyperliquid/0xabc123def456ghi789jkl012mno345pqr678stu901vwx234yz/pnl?start=2025-01-01&end=2025-01-07",
+              "host": ["{{base_url}}"],
+              "path": ["api", "hyperliquid", "0xabc123def456ghi789jkl012mno345pqr678stu901vwx234yz", "pnl"],
+              "query": [
+                {
+                  "key": "start",
+                  "value": "2025-01-01"
+                },
+                {
+                  "key": "end",
+                  "value": "2025-01-07"
+                }
+              ]
+            },
+            "description": "Get daily PnL for a wallet over 7 days"
+          }
+        },
+        {
+          "name": "Get Wallet PnL - 30 Days",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/hyperliquid/0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb/pnl?start=2025-01-01&end=2025-01-30",
+              "host": ["{{base_url}}"],
+              "path": ["api", "hyperliquid", "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb", "pnl"],
+              "query": [
+                {
+                  "key": "start",
+                  "value": "2025-01-01"
+                },
+                {
+                  "key": "end",
+                  "value": "2025-01-30"
+                }
+              ]
+            },
+            "description": "Get daily PnL for a wallet over 30 days"
+          }
+        },
+        {
+          "name": "Get Wallet PnL - Invalid Date Format",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/hyperliquid/0x123/pnl?start=01-01-2025&end=01-03-2025",
+              "host": ["{{base_url}}"],
+              "path": ["api", "hyperliquid", "0x123", "pnl"],
+              "query": [
+                {
+                  "key": "start",
+                  "value": "01-01-2025"
+                },
+                {
+                  "key": "end",
+                  "value": "01-03-2025"
+                }
+              ]
+            },
+            "description": "Test error handling with invalid date format (should use YYYY-MM-DD)"
+          }
+        },
+        {
+          "name": "Get Wallet PnL - Missing End Date",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/hyperliquid/0x123/pnl?start=2025-01-01",
+              "host": ["{{base_url}}"],
+              "path": ["api", "hyperliquid", "0x123", "pnl"],
+              "query": [
+                {
+                  "key": "start",
+                  "value": "2025-01-01"
+                }
+              ]
+            },
+            "description": "Test error handling with missing end date parameter"
+          }
+        },
+        {
+          "name": "Get Wallet PnL - Date Range Too Large",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/hyperliquid/0x123/pnl?start=2025-01-01&end=2025-04-15",
+              "host": ["{{base_url}}"],
+              "path": ["api", "hyperliquid", "0x123", "pnl"],
+              "query": [
+                {
+                  "key": "start",
+                  "value": "2025-01-01"
+                },
+                {
+                  "key": "end",
+                  "value": "2025-04-15",
+                  "description": "Exceeds 90 day limit"
+                }
+              ]
+            },
+            "description": "Test error handling when date range exceeds 90 days"
+          }
+        }
+      ],
+      "description": "HyperLiquid Wallet PnL API endpoints - Calculates daily Profit and Loss for HyperLiquid wallets"
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ]
+}
