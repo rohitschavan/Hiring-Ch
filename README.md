@@ -169,3 +169,8 @@ curl "http://localhost:3000/api/hyperliquid/0xabc123.../pnl?start=2025-08-01&end
 | `HYPERLIQUID_API_URL` | HyperLiquid API URL | `https://api.hyperliquid.xyz` |
 
 
+NOTE ---- 
+HyperLiquid does not expose historical unrealized PnL snapshots.
+This service calculates unrealized PnL using current mark prices from
+clearinghouseState. Historical unrealized values are approximated via
+mark-to -market methodology.
