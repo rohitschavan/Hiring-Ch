@@ -11,7 +11,7 @@ const HYPERLIQUID_API_URL = process.env.HYPERLIQUID_API_URL || 'https://api.hype
 const COINGECKO_API = 'https://api.coingecko.com/api/v3';
 
 /**
- * Map HyperLiquid coin symbol → CoinGecko ID
+ * Map HyperLiquid coin symbol CoinGecko ID
  */
 const COIN_MAP = {
   BTC: 'bitcoin',
@@ -19,7 +19,7 @@ const COIN_MAP = {
   SOL: 'solana'
 };
 
-/* ------------------ HELPERS ------------------ */
+/* HELPERS  */
 
 function getDateRange(startDate, endDate) {
   const dates = [];
@@ -38,7 +38,7 @@ function normalizeTimestamp(ts) {
   return time;
 }
 
-/* ------------------ PRICE FETCH ------------------ */
+/* PRICE FETCH */
 
 async function fetchDailyClosePrices(coin, startDate, endDate) {
   const id = COIN_MAP[coin];
@@ -67,7 +67,7 @@ async function fetchDailyClosePrices(coin, startDate, endDate) {
   return daily;
 }
 
-/* ------------------ HYPERLIQUID FETCHERS ------------------ */
+/* HYPERLIQUID FETCHERS  */
 
 async function fetchUserTrades(wallet) {
   try {
@@ -118,7 +118,7 @@ async function fetchUserState(wallet) {
   }
 }
 
-/* ------------------ MAIN SERVICE ------------------ */
+/* MAIN SERVICE */
 
 async function getWalletPnL(wallet, startDate, endDate) {
   const dates = getDateRange(startDate, endDate);
@@ -134,7 +134,7 @@ async function getWalletPnL(wallet, startDate, endDate) {
 
   const positions = state.assetPositions || [];
 
-  /* Fetch prices ONCE per coin */
+  /* Fetch prices ONCE per coin*/
   const priceMap = {};
   for (const pos of positions) {
     if (!priceMap[pos.coin]) {
@@ -151,7 +151,7 @@ async function getWalletPnL(wallet, startDate, endDate) {
   for (let i = 0; i < dates.length; i++) {
     const date = dates[i];
 
-    /* ----- Trades ----- */
+    /* Trades*/
     const dayTrades = trades.filter(t => {
       const ts = normalizeTimestamp(t.time || t.timestamp || t.closedPxTime);
       if (!ts) return false;
@@ -168,7 +168,7 @@ async function getWalletPnL(wallet, startDate, endDate) {
       0
     );
 
-    /* ----- Funding ----- */
+    /*Funding */
     const dayFunding = funding.filter(f => {
       const ts = normalizeTimestamp(f.time || f.timestamp);
       if (!ts) return false;
@@ -180,7 +180,7 @@ async function getWalletPnL(wallet, startDate, endDate) {
       0
     );
 
-    /* ----- Unrealized PnL (MARK-TO-MARKET) ----- */
+    /* Unrealized PnL */
     let unrealized = 0;
     for (const pos of positions) {
       const size = Number(pos.szi);

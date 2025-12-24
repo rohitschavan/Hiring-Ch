@@ -3,7 +3,7 @@ let HfInference;
 try {
   HfInference = require('@huggingface/inference').HfInference;
 } catch (e) {
-  // Package not installed, will use axios fallback
+  
 }
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
@@ -15,7 +15,7 @@ async function generateInsight(tokenData) {
   // Step 2: Build structured prompt
   const prompt = buildPrompt(tokenData);
 
-  // Step 3: Call chosen AI model with prompt
+  // Step 3: Call AI model with prompt
   try {
     if (AI_PROVIDER === 'huggingface' && HUGGINGFACE_API_KEY) {
       return await callHuggingFace(prompt);
