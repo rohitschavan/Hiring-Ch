@@ -91,20 +91,20 @@ curl -X POST http://localhost:3000/api/token/chainlink/insight \
 {
     "source": "coingecko",
     "token": {
-        "id": "chainlink",
-        "symbol": "link",
-        "name": "Chainlink",
+        "id": "ethereum",
+        "symbol": "eth",
+        "name": "Ethereum",
         "market_data": {
-            "current_price_usd": 12.35,
-            "market_cap_usd": 8745521690,
-            "total_volume_usd": 497812425,
-            "price_change_percentage_24h": -0.80707,
-            "price_change_percentage_7d": -4.65603,
-            "price_change_percentage_30d": -1.6062
+            "current_price_usd": 2942.25,
+            "market_cap_usd": 354820475362,
+            "total_volume_usd": 21379793486,
+            "price_change_percentage_24h": -1.19249,
+            "price_change_percentage_7d": -0.5184,
+            "price_change_percentage_30d": 4.90556
         }
     },
     "insight": {
-        "reasoning": "Chainlink's current price of $12.35 suggests a stable market position. The 24h volume of $497.81M is significant, indicating a relatively high trading activity. The 24h change of -0.80707% is minor, and the 7d and 30d changes of -4.65603% and -1.6062% respectively, show a slight downward trend. However, considering the market capitalization of $8.75B, Chainlink remains a dominant player in the cryptocurrency market.",
+        "reasoning": "Ethereum's market performance is mixed, with a recent decline in price (-1.19249% 24h change) but a positive 30-day change (4.90556%) indicating overall growth. The 7-day change (-0.5184%) shows a slight decline. Considering the market capitalization and 24-hour trading volume, Ethereum remains a significant player in the cryptocurrency market.",
         "sentiment": "Neutral"
     },
     "model": {
