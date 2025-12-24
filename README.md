@@ -89,26 +89,28 @@ curl -X POST http://localhost:3000/api/token/chainlink/insight \
 **Response**:
 ```json
 {
-  "source": "coingecko",
-  "token": {
-    "id": "chainlink",
-    "symbol": "link",
-    "name": "Chainlink",
-    "market_data": {
-      "current_price_usd": 7.23,
-      "market_cap_usd": 3500000000,
-      "total_volume_usd": 120000000,
-      "price_change_percentage_24h": -1.2
+    "source": "coingecko",
+    "token": {
+        "id": "chainlink",
+        "symbol": "link",
+        "name": "Chainlink",
+        "market_data": {
+            "current_price_usd": 12.35,
+            "market_cap_usd": 8745521690,
+            "total_volume_usd": 497812425,
+            "price_change_percentage_24h": -0.80707,
+            "price_change_percentage_7d": -4.65603,
+            "price_change_percentage_30d": -1.6062
+        }
+    },
+    "insight": {
+        "reasoning": "Chainlink's current price of $12.35 suggests a stable market position. The 24h volume of $497.81M is significant, indicating a relatively high trading activity. The 24h change of -0.80707% is minor, and the 7d and 30d changes of -4.65603% and -1.6062% respectively, show a slight downward trend. However, considering the market capitalization of $8.75B, Chainlink remains a dominant player in the cryptocurrency market.",
+        "sentiment": "Neutral"
+    },
+    "model": {
+        "provider": "huggingface",
+        "model": "meta-llama/Meta-Llama-3-8B-Instruct"
     }
-  },
-  "insight": {
-    "reasoning": "Generic market comment",
-    "sentiment": "Neutral"
-  },
-  "model": {
-    "provider": "openai",
-    "model": "gpt-4o-mini"
-  }
 }
 ```
 
@@ -126,32 +128,43 @@ curl "http://localhost:3000/api/hyperliquid/0xabc123.../pnl?start=2025-08-01&end
 **Response**:
 ```json
 {
-  "wallet": "0xabc123...",
-  "start": "2025-08-01",
-  "end": "2025-08-03",
-  "daily": [
-    {
-      "date": "2025-08-01",
-      "realized_pnl_usd": 120.5,
-      "unrealized_pnl_usd": -15.3,
-      "fees_usd": 2.1,
-      "funding_usd": -0.5,
-      "net_pnl_usd": 102.6,
-      "equity_usd": 10102.6
+    "wallet": "0x0ddf9bae2af4b874b96d287a5ad42eb47138a902",
+    "start": "2025-12-23",
+    "end": "2025-12-24",
+    "daily": [
+        {
+            "date": "2025-12-23",
+            "realized_pnl_usd": 0,
+            "unrealized_pnl_usd": 0,
+            "fees_usd": 0,
+            "funding_usd": -17500.02,
+            "net_pnl_usd": -17500.02,
+            "equity_usd": 39344107.06
+        },
+        {
+            "date": "2025-12-24",
+            "realized_pnl_usd": 0,
+            "unrealized_pnl_usd": 0,
+            "fees_usd": 0,
+            "funding_usd": -18508.62,
+            "net_pnl_usd": -18508.62,
+            "equity_usd": 39325598.44
+        }
+    ],
+    "summary": {
+        "total_realized_usd": 0,
+        "total_unrealized_usd": 0,
+        "total_fees_usd": 0,
+        "total_funding_usd": -36008.64,
+        "net_pnl_usd": -36008.64
+    },
+    "diagnostics": {
+        "data_source": "hyperliquid_api",
+        "last_api_call": "2025-12-24T18:42:27.959Z",
+        "trades_found": 0,
+        "funding_records_found": 283,
+        "api_status": "connected"
     }
-  ],
-  "summary": {
-    "total_realized_usd": 120.5,
-    "total_unrealized_usd": -25.3,
-    "total_fees_usd": 3.3,
-    "total_funding_usd": -0.8,
-    "net_pnl_usd": 91.1
-  },
-  "diagnostics": {
-    "data_source": "hyperliquid_api",
-    "last_api_call": "2025-09-22T12:00:00Z",
-    "notes": "PnL calculated using daily close prices"
-  }
 }
 ```
 
